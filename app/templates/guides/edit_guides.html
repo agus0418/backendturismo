@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Guide{% endblock %}
+
+{% block content %}
+  <h1>Edit Guide</h1>
+  <form method="POST" action="{{ url_for('guide.edit', id=guide.id) }}">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.first_name.label }}<br>
+      {{ form.first_name(size=32, value=guide.first_name) }}<br>
+      {% for error in form.first_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.last_name.label }}<br>
+      {{ form.last_name(size=32, value=guide.last_name) }}<br>
+      {% for error in form.last_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.dni.label }}<br>
+      {{ form.dni(size=32, value=guide.dni) }}<br>
+      {% for error in form.dni.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.city.label }}<br>
+      {{ form.city(size=32, value=guide.city) }}<br>
+      {% for error in form.city.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.province.label }}<br>
+      {{ form.province(size=32, value=guide.province) }}<br>
+      {% for error in form.province.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.activities.label }}<br>
+      {{ form.activities(cols=32, rows=4, value=guide.activities) }}<br>
+      {% for error in form.activities.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.submit() }}
+    </div>
+  </form>
+{% endblock %}
+

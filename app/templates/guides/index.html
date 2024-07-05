@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Guides{% endblock %}
+
+{% block content %}
+  <h1>List of Guides</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>DNI</th>
+        <th>City</th>
+        <th>Province</th>
+        <th>Activities</th>
+        {% if current_user.can_manage_guides %}
+          <th>Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for guide in guides %}
+        <tr>
+          <td>{{ guide.first_name }}</td>
+          <td>{{ guide.last_name }}</td>
+          <td>{{ guide.dni }}</td>
+          <td>{{ guide.city }}</td>
+          <td>{{ guide.province }}</td>
+          <td>{{ guide.activities }}</td>
+          {% if current_user.can_manage_guides %}
+            <td>
+              <a href="{{ url_for('guide.edit', id=guide.id) }}">Edit</a>
+              <a href="{{ url_for('guide.delete', id=guide.id) }}">Delete</a>
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
